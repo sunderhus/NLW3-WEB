@@ -1,7 +1,7 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-import "./colors.css";
-import "./typography.css";
+import './colors.css';
+import './typography.css';
 
 const GlobalStyles = createGlobalStyle`
  
@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     margin:0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
  :root{
@@ -17,9 +18,7 @@ const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale; 
     font-family: 'Nunito', sans-serif;
     scroll-behavior: smooth;
-    html {
-    
-    } 
+   
     html,
     body{
         height: 100vh;
@@ -28,11 +27,13 @@ const GlobalStyles = createGlobalStyle`
         color:var(--white);
         background-color: var(--grey);
     }
-    
+    p{
+      font-size:1.8rem;
+    }
     textarea,
     input, 
     button{
-        font-family:600 var(--regular) 'Nunito', sans-serif;
+        font-family:600 2.4rem 'Nunito', sans-serif;
     }
 }
 `;
