@@ -1,8 +1,8 @@
-import React from "react";
-import Landing from "./pages/Landing";
+import React from 'react';
+import Routes from './routes';
 
-function App() {
-  return <Landing />;
-}
+const App: React.FC = () => {
+  return <Routes />;
+};
 
 export default App;
