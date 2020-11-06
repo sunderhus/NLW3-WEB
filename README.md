@@ -14,7 +14,10 @@
 
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=15C3D6&labelColor=000000">
 
-  <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/700604f6-c279-4e57-abfe-48ff2fa4ee17/deploy-status">
+<a href="https://happykids.netlify.app/">
+    <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/700604f6-c279-4e57-abfe-48ff2fa4ee17/deploy-status">
+</a>
+
 </p>
 
 <br>
@@ -43,7 +46,6 @@ Nos links abaixo você encontra o layout do projeto web e também do mobile. Lem
 
 - [Layout Web](https://www.figma.com/file/mDEbnoojksG4w8sOxmudh3/Happy-Web)
 - [Layout Mobile](https://www.figma.com/file/X27FfVxAgy9f5IFa7ONlph/Happy-Mobile)
-
 
 - [Desafio Happy 2.0](https://www.notion.so/Vers-o-2-0-do-Happy-c754db7a4d41469e8c2d00fcf75392c4)
 
