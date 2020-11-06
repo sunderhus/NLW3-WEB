@@ -3,6 +3,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import { Wrapper, Page } from './styles';
 
 import logo from '../../assets/images/logo.svg';
+import { Link } from 'react-router-dom';
 
 const Landing: React.FC = () => {
   return (
@@ -19,9 +20,9 @@ const Landing: React.FC = () => {
           <span>Rio Grande do Sul</span>
         </div>
 
-        <a href="/" className="enter-app">
+        <Link to="/map" className="enter-app">
           <FaArrowRight size={26} color="rgba(0,0,0,0.6)" />
-        </a>
+        </Link>
       </Wrapper>
     </Page>
   );
