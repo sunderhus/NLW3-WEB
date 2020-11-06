@@ -37,6 +37,10 @@ export const Page = styled.div`
     }
   }
 
+  .leaflet-container {
+    z-index: 5;
+  }
+
   .create-orphanage {
     position: absolute;
     right: 4rem;
@@ -51,6 +55,8 @@ export const Page = styled.div`
     justify-content: center;
     align-items: center;
     transition: background-color 0.2s;
+
+    z-index: 10;
     &:hover {
       background: #17d6eb;
     }
