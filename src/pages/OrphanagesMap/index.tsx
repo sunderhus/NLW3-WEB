@@ -1,10 +1,12 @@
 import 'leaflet/dist/leaflet.css';
 import React, { useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import happyMarker from '../../assets/images/marker.svg';
 import { Page } from './styles';
+import Leaflet from 'leaflet';
+import { FaArrowRight } from 'react-icons/fa';
 
 const OrphanagesMap: React.FC = () => {
   const [initialPosition, setInitialPosition] = useState<Coordinates>({
@@ -15,6 +17,12 @@ const OrphanagesMap: React.FC = () => {
     () =>
       `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
   );
+  const mapIcon = Leaflet.icon({
+    iconUrl: happyMarker,
+    iconSize: [58, 68],
+    iconAnchor: [29, 68],
+    popupAnchor: [170, 2],
+  });
 
   useEffect(() => {
     navigator.geolocation &&
@@ -44,6 +52,23 @@ const OrphanagesMap: React.FC = () => {
       >
         <TileLayer url={urlTile} />
         {/* {<TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" /> } */}
+
+        <Marker
+          icon={mapIcon}
+          position={[initialPosition.latitude, initialPosition.longitude]}
+        >
+          <Popup
+            closeButton={false}
+            minWidth={240}
+            maxWidth={240}
+            className="map-popup"
+          >
+            Lar dos Gulis
+            <Link to="/orphanage">
+              <FaArrowRight size={20} color="#fff" />
+            </Link>
+          </Popup>
+        </Marker>
       </MapContainer>
       <Link to="/map" className="create-orphanage">
         <FiPlus size={32} color="#FFF" />
