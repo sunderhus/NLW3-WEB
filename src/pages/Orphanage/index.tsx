@@ -1,7 +1,7 @@
 import Leaflet from 'leaflet';
 import React, { useState } from 'react';
 import { FiClock, FiInfo } from 'react-icons/fi';
-import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import mapMarkerImg from '../../assets/images/marker.svg';
 import { Page } from './styles';
 // import PrimaryButton from '../../components/PrimaryButton';
@@ -17,7 +17,7 @@ const happyMapIcon = Leaflet.icon({
 });
 
 const Orphanage: React.FC = () => {
-  const [initialPosition, setInitialPosition] = useState<Coordinates>({
+  const [initialPosition] = useState<Coordinates>({
     latitude: -30.008902625,
     longitude: -51.150933749,
   } as Coordinates);
@@ -102,7 +102,7 @@ const Orphanage: React.FC = () => {
               </MapContainer>
 
               <footer>
-                <a href="">Ver rotas no Google Maps</a>
+                <a href="/">Ver rotas no Google Maps</a>
               </footer>
             </div>
 

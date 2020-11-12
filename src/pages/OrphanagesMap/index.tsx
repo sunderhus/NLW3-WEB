@@ -64,13 +64,13 @@ const OrphanagesMap: React.FC = () => {
             className="map-popup"
           >
             Lar dos Gulis
-            <Link to="/orphanage">
+            <Link to="/orphanages/1">
               <FaArrowRight size={20} color="#fff" />
             </Link>
           </Popup>
         </Marker>
       </MapContainer>
-      <Link to="/map" className="create-orphanage">
+      <Link to="/orphanages/create" className="create-orphanage">
         <FiPlus size={32} color="#FFF" />
       </Link>
     </Page>
