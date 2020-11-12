@@ -1,20 +1,9 @@
-import Leaflet from 'leaflet';
 import React, { useState } from 'react';
 import { FiClock, FiInfo } from 'react-icons/fi';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-import mapMarkerImg from '../../assets/images/marker.svg';
+import Sidebar from '../../components/Sidebar';
+import mapIcon from '../../utils/mapIcon';
 import { Page } from './styles';
-// import PrimaryButton from '../../components/PrimaryButton';
-// import Sidebar from '../../components/Sidebar';
-// import Map from '../../components/Map';
-
-const happyMapIcon = Leaflet.icon({
-  iconUrl: mapMarkerImg,
-
-  iconSize: [58, 68],
-  iconAnchor: [29, 68],
-  popupAnchor: [0, -60],
-});
 
 const Orphanage: React.FC = () => {
   const [initialPosition] = useState<Coordinates>({
@@ -25,9 +14,10 @@ const Orphanage: React.FC = () => {
     () =>
       `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
   );
+
   return (
     <Page>
-      {/* <Sidebar /> */}
+      <Sidebar />
 
       <main>
         <div className="orphanage-details">
@@ -93,7 +83,7 @@ const Orphanage: React.FC = () => {
                 <TileLayer url={urlTile} />
                 <Marker
                   interactive={false}
-                  icon={happyMapIcon}
+                  icon={mapIcon}
                   position={[
                     initialPosition.latitude,
                     initialPosition.longitude,

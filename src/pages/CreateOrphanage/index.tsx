@@ -1,29 +1,23 @@
-import Leaflet from 'leaflet';
 import React, { useState } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
 import { FiPlus } from 'react-icons/fi';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import happyMarker from '../../assets/images/marker.svg';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import Sidebar from '../../components/Sidebar';
+import mapIcon from '../../utils/mapIcon';
 import { CreateOrphanageForm, Page } from './styles';
 
 const CreateOrphanage: React.FC = () => {
-  const mapIcon = Leaflet.icon({
-    iconUrl: happyMarker,
-    iconSize: [58, 68],
-    iconAnchor: [29, 68],
-    popupAnchor: [170, 2],
-  });
   const [initialPosition] = useState<Coordinates>({
     latitude: -30.008902625,
     longitude: -51.150933749,
   } as Coordinates);
+
   const [urlTile] = useState<string>(
     () =>
       `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
   );
   return (
     <Page>
-      {/* <Sidebar /> */}
+      <Sidebar />
 
       <main>
         <CreateOrphanageForm>
@@ -41,19 +35,7 @@ const CreateOrphanage: React.FC = () => {
               <Marker
                 icon={mapIcon}
                 position={[initialPosition.latitude, initialPosition.longitude]}
-              >
-                <Popup
-                  closeButton={false}
-                  minWidth={240}
-                  maxWidth={240}
-                  className="map-popup"
-                >
-                  pegar do state o nome digitado.
-                  <a href="/">
-                    <FaArrowRight size={20} color="#fff" />
-                  </a>
-                </Popup>
-              </Marker>
+              ></Marker>
             </MapContainer>
 
             <div className="input-block">
