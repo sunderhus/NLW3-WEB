@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
+import { LatLng, LeafletMouseEvent } from 'leaflet';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 import Sidebar from '../../components/Sidebar';
 import mapIcon from '../../utils/mapIcon';
 import { CreateOrphanageForm, Page } from './styles';
 
 const CreateOrphanage: React.FC = () => {
-  const [initialPosition] = useState<Coordinates>({
-    latitude: -30.008902625,
-    longitude: -51.150933749,
+  const [deviceCurrentPosition, setDeviceCurrentPosition] = useState<
+    Coordinates
+  >({
+    latitude: 0,
+    longitude: 0,
   } as Coordinates);
+
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+
+  const handleMapClick = useCallback(({ latlng }: LeafletMouseEvent) => {
+    console.log(latlng);
+    const { lat, lng } = latlng;
+
+    setPosition({ latitude: lat, longitude: lng });
+  }, []);
 
   const [urlTile] = useState<string>(
     () =>
       `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
   );
+
+  useEffect(() => {
+    navigator.geolocation &&
+      navigator.geolocation.getCurrentPosition(({ coords }) => {
+        setDeviceCurrentPosition(coords);
+      });
+  }, []);
 
   return (
     <Page>
@@ -25,19 +44,27 @@ const CreateOrphanage: React.FC = () => {
           <fieldset>
             <legend>Dados</legend>
 
-            <MapContainer
-              center={[initialPosition.latitude, initialPosition.longitude]}
-              zoom={15}
+            <Map
+              center={[
+                deviceCurrentPosition.latitude,
+                deviceCurrentPosition.longitude,
+              ]}
+              zoom={16}
               scrollWheelZoom={false}
+              doubleClickZoom={false}
+              zoomControl={false}
               style={{ minHeight: '280px', height: '100%', width: '100%' }}
+              onclick={(e) => handleMapClick(e)}
             >
               <TileLayer url={urlTile} />
 
-              <Marker
-                icon={mapIcon}
-                position={[initialPosition.latitude, initialPosition.longitude]}
-              ></Marker>
-            </MapContainer>
+              {position.latitude !== 0 && (
+                <Marker
+                  icon={mapIcon}
+                  position={[position.latitude, position.longitude]}
+                ></Marker>
+              )}
+            </Map>
 
             <div className="input-block">
               <label htmlFor="name">Nome</label>

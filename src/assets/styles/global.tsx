@@ -41,9 +41,6 @@ const GlobalStyles = createGlobalStyle`
   border-bottom: 0.1rem solid #dde3f0;
   border-radius: 2rem;
 
-  .leaflet-top.leaflet-left {
-    display: none;
-  }
   
   .leaflet-control-attribution a{
     display:none;

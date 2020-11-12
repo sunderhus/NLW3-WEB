@@ -19,6 +19,12 @@ export const CreateOrphanageForm = styled.form`
   padding: 6.4rem 8rem;
   overflow: hidden;
 
+  .leaflet-container {
+    margin-bottom: 4rem;
+    border: 0.1rem solid #d3d2d5;
+    border-radius: 0.2rem;
+  }
+
   fieldset {
     border: 0;
     + fieldset {

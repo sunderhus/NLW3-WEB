@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
+import { Map, Marker, TileLayer, Popup } from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import happyMarker from '../../assets/images/marker.svg';
 import { Page } from './styles';
@@ -49,7 +49,8 @@ const OrphanagesMap: React.FC = () => {
           <span>Rio Grande do Sul</span>
         </footer>
       </aside>
-      <MapContainer
+      <Map
+        zoomControl={false}
         center={[initialPosition.latitude, initialPosition.longitude]}
         zoom={15}
         scrollWheelZoom={false}
@@ -79,7 +80,7 @@ const OrphanagesMap: React.FC = () => {
             </Marker>
           );
         })}
-      </MapContainer>
+      </Map>
       <Link to="/orphanages/create" className="create-orphanage">
         <FiPlus size={32} color="#FFF" />
       </Link>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FiClock, FiInfo } from 'react-icons/fi';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
 import api from '../../services/api';
@@ -77,9 +77,10 @@ const Orphanage: React.FC = () => {
             <p>{orphanage.about}</p>
 
             <div className="map-container">
-              <MapContainer
+              <Map
                 scrollWheelZoom={false}
                 dragging={false}
+                zoomControl={false}
                 center={[orphanage.latitude, orphanage.longitude]}
                 zoom={16}
                 style={{ width: '100%', height: 280 }}
@@ -90,7 +91,7 @@ const Orphanage: React.FC = () => {
                   icon={mapIcon}
                   position={[orphanage.latitude, orphanage.longitude]}
                 />
-              </MapContainer>
+              </Map>
 
               <footer>
                 <a
