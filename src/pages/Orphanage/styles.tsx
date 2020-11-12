@@ -80,17 +80,6 @@ export const Page = styled.div`
             line-height: 2.5rem;
           }
         }
-
-        .leaflet-container {
-          border-bottom: 0.1rem solid #dde3f0;
-          border-radius: 2rem;
-          .leaflet-top.leaflet-left {
-            display: none;
-          }
-          .leaflet-control {
-            display: none;
-          }
-        }
       }
       hr {
         width: 100%;
@@ -115,6 +104,12 @@ export const Page = styled.div`
         background: linear-gradient(154.16deg, #edfff6 7.85%, #ffffff 91.03%);
         border: 1px solid #a1e9c5;
         color: #37c77f;
+      }
+      .closed-on-weekends {
+        background: linear-gradient(154.16deg, #fcf0f4 7.85%, #ffffff 91.03%);
+        border: 1px solid #ffbcd4;
+        box-sizing: border-box;
+        color: #ff669d;
       }
       div {
         padding: 3.2rem 2.4rem;
