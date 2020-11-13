@@ -73,6 +73,8 @@ export const CreateOrphanageForm = styled.form`
         outline: none;
         color: #5c8599;
         font-family: inherit;
+        font-size: 1.8rem;
+        line-height: 2.8rem;
       }
 
       input {

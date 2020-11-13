@@ -1,7 +1,8 @@
-import { LatLng, LeafletMouseEvent } from 'leaflet';
-import React, { useCallback, useEffect, useState } from 'react';
+import { LeafletMouseEvent } from 'leaflet';
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { Map, Marker, TileLayer } from 'react-leaflet';
+import PrimaryButton from '../../components/PrimaryButton';
 import Sidebar from '../../components/Sidebar';
 import mapIcon from '../../utils/mapIcon';
 import { CreateOrphanageForm, Page } from './styles';
@@ -15,6 +16,10 @@ const CreateOrphanage: React.FC = () => {
   } as Coordinates);
 
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+  const [urlTile] = useState<string>(
+    () =>
+      `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
+  );
 
   const handleMapClick = useCallback(({ latlng }: LeafletMouseEvent) => {
     console.log(latlng);
@@ -23,10 +28,9 @@ const CreateOrphanage: React.FC = () => {
     setPosition({ latitude: lat, longitude: lng });
   }, []);
 
-  const [urlTile] = useState<string>(
-    () =>
-      `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
-  );
+  const handleSubmit = useCallback((event: FormEvent) => {
+    event.preventDefault();
+  }, []);
 
   useEffect(() => {
     navigator.geolocation &&
@@ -40,7 +44,7 @@ const CreateOrphanage: React.FC = () => {
       <Sidebar />
 
       <main>
-        <CreateOrphanageForm>
+        <CreateOrphanageForm onSubmit={handleSubmit}>
           <fieldset>
             <legend>Dados</legend>
 
@@ -51,8 +55,7 @@ const CreateOrphanage: React.FC = () => {
               ]}
               zoom={16}
               scrollWheelZoom={false}
-              doubleClickZoom={false}
-              zoomControl={false}
+              zoomControl={true}
               style={{ minHeight: '280px', height: '100%', width: '100%' }}
               onclick={(e) => handleMapClick(e)}
             >
@@ -60,6 +63,7 @@ const CreateOrphanage: React.FC = () => {
 
               {position.latitude !== 0 && (
                 <Marker
+                  interactive={false}
                   icon={mapIcon}
                   position={[position.latitude, position.longitude]}
                 ></Marker>
@@ -114,11 +118,10 @@ const CreateOrphanage: React.FC = () => {
             </div>
           </fieldset>
 
-          {/* <PrimaryButton type="submit">Confirmar</PrimaryButton> */}
+          <PrimaryButton type="submit">Confirmar</PrimaryButton>
         </CreateOrphanageForm>
       </main>
     </Page>
   );
 };
 export default CreateOrphanage;
-// return `https://a.tile.openstreetmap.org/${z}/${x}/${y}.png`;
