@@ -20,6 +20,7 @@ export const Page = styled.div`
       width: 100%;
       height: 30rem;
       object-fit: cover;
+      object-position: center 35%;
     }
     .images {
       display: grid;

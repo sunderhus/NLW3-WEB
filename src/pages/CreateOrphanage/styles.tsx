@@ -92,13 +92,30 @@ export const CreateOrphanageForm = styled.form`
 
       .new-image {
         width: 100%;
-        height: 6.4rem;
+        height: 9.6rem;
         background: #f5f8fa;
         border: 0.1rem dashed #96d2f0;
         border-radius: 2rem;
         outline: none;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
+
+      input[type='file'] {
+        display: none;
+      }
+
+      .images-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 1.6rem;
+        img {
+          object-fit: cover;
+        }
+      }
+
       .button-select {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -115,6 +132,9 @@ export const CreateOrphanageForm = styled.form`
           background: #f5f8fa;
           border: 0.1rem solid #d3e2e5;
           color: #5c8599;
+          font-size: 1.8rem;
+          line-height: 2.6rem;
+          font-weight: 600;
           cursor: pointer;
           &.active {
             background: #edfff6;
